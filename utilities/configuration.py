@@ -120,10 +120,11 @@ class ConfigurationUrlsets:
 
 
 class ConfigurationAggregation:
-    def __init__(self, name: str, cron: str, urlsets: Sequence[str], settings: dict):
+    def __init__(self, name: str, cron: str, urlsets: Sequence[str], settings: dict, database: str):
         self.name = name
         self.cron = cron
         self.urlsets = urlsets
+        self.database = database
         self.settings = settings
 
 

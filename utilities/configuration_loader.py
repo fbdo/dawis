@@ -307,7 +307,7 @@ class ConfigurationLoader:
         if 'urlsets' in plain_configuration and type(plain_configuration['urlsets']) is dict:
             urlsets = plain_configuration['urlsets']
         else:
-            raise ConfigurationMissingError('urlsets')
+            urlsets = {}
 
         configuration_urlsets = []
 
@@ -360,6 +360,7 @@ class ConfigurationLoader:
         settings = {}
         name = None
         cron = None
+        database = 'mongodb'
 
         if key in configuration_aggregations and type(configuration_aggregations[key]) is dict:
             if 'urlsets' in configuration_aggregations[key] and type(
@@ -387,7 +388,7 @@ class ConfigurationLoader:
         if cron is None:
             raise ConfigurationMissingError('Missing cron command for "' + name + '"')
 
-        return ConfigurationAggregation(name, cron, urlsets, settings)
+        return ConfigurationAggregation(name, cron, urlsets, settings, database)
 
     @staticmethod
     def _process_configuration_operations(plain_configuration: dict) -> ConfigurationOperations:
